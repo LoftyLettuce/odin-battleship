@@ -193,3 +193,57 @@ describe("placeShip() being tested", () => {
     });
   });
 });
+describe("receiveAttack() being tested", () => {
+  test("Miss", () => {
+    const test = new board(),
+      x = 1,
+      y = 2;
+    const expected = test.receiveAttack(x, y);
+    expect(expected).toBe(true);
+    expect(
+      test.board.every((arr, row) =>
+        arr.every((value, col) => (row == x && col == y ? value : !value)),
+      ),
+    ).toBe(true);
+  });
+  test("Hit boat", () => {
+    const test = new board();
+    const hp = 4;
+    const ship = new Battleship(hp),
+      x = 1,
+      y = 2,
+      isVertical = true;
+    test.placeShip(ship, x, y, isVertical);
+    const hit = jest.spyOn(ship, "hit");
+    const expected = test.receiveAttack(x, y);
+    expect(expected).toBe(true);
+    expect(test.board[x][y]).toBe(true);
+    expect(hit).toHaveBeenCalledTimes(1);
+  });
+  test("Hit same spot", () => {
+    const test = new board(),
+      x = 1,
+      y = 2;
+    test.receiveAttack(x, y);
+    const expected = test.receiveAttack(x, y);
+    expect(expected).toBe(false);
+  });
+});
+test("innitBoard() being test", () => {
+  const test = new board();
+  test.innitBoard();
+  expect(
+    test.board.every((arr, row) =>
+      arr.every((value, col) =>
+        (col == 0 && inRange(0, row, 1)) ||
+        (row == 1 && col == 3) ||
+        (row == 1 && col == 6) ||
+        row == 3 ||
+        (row == 6 && inRange(2, col, 4))
+          ? value instanceof Battleship
+          : value == false,
+      ),
+    ),
+  ).toBe(true);
+  expect(test.battleships.length).toBe(5);
+});
