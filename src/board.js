@@ -19,7 +19,7 @@ export class board {
     const head = (part.value = Math.min(n - ship.hp, part.value));
     for (; part.value < head + ship.hp; part.value++) {
       if (postBoard[row.value][col.value]) {
-        return;
+        return false;
       }
       postBoard[row.value][col.value] = ship;
     }
