@@ -18,6 +18,18 @@ export class Bot extends Player{
   constructor(name){
     super(name);
     this.moves = Array(49).fill(0).map((e, i)=>i);
+    //reset
+    this.board.board.forEach((arr)=>arr.fill(false));
+    //randomize board
+    const col = Array(7).fill(0).map((e,i)=>i);
+    for (let i = 0; i < 5; i++){
+      const ri = Math.floor(Math.random()*6);
+      const ci = Math.floor(Math.random()*(col.length-1));
+      if (this.board.placeShip(this.board.battleships[i], ri, col[ci], true)==false){
+        i--;
+      };
+      col.splice(ci, 1);
+    }
   }
   play(){
     const index = Math.floor(Math.random()*(this.moves.length-1));
