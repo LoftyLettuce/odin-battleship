@@ -29,7 +29,7 @@ export const dom = function(){
       }
     })
     input.appendChild(button);
-    document.querySelector('body').appendChild(input);
+    return input;
   }
   function createTable(n){
     const root = document.querySelector('body');
@@ -44,7 +44,7 @@ export const dom = function(){
       }
       board.appendChild(row);
     }
-    root.appendChild(board);
+    return board;
   }
   function renderTable(plr, table){
     const n = 7;
@@ -52,8 +52,10 @@ export const dom = function(){
     for (let i = 0; i < n; i++){
       const btn = row[i].querySelectorAll('button');
       for (let j = 0; j < n; j++){
-        btn[j].className = btn[j].className;
-        if (plr.board.board[i][j] != false){
+        if (plr.board.board[i][j] == false){
+          btn[j].className = '';
+        }
+        else{
           if (plr.board.board[i][j] == true){
             btn[j].classList.add('checked');
             continue;
