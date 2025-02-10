@@ -1,0 +1,48 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+body{
+  padding: 1%;
+  height: 100vh;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: 7fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 2%;
+  column-gap: 5%;
+}
+table{
+  aspect-ratio: 1/1;
+  display: flex;
+  flex-direction: column;
+}
+tr{
+  flex: 1 1 0;
+  display: flex;
+}
+button{
+  flex: 1 1 0;
+  background-color: blue;
+  outline: 0.5px black;
+  box-sizing: border-box;
+}
+.hide .ship{
+  background-color: blue;
+}
+.ship{
+  background-color: brown;
+}
+.checked{
+  background-color: red;
+}
+.ship.checked{
+  background-color: black;
+}
+.input{
+  grid-column: 2;
+}
+.input button{
+  width: 20px;
+  height: 20px;
+}
