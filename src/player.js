@@ -10,8 +10,8 @@ export class Human extends Player{
   constructor(name){
     super(name);
   }
-  play(x, y){
-    return this.board.receiveAttack(x, y);
+  play(board, x, y){
+    return board.receiveAttack(x, y);
   }
 }
 export class Bot extends Player{
@@ -31,10 +31,10 @@ export class Bot extends Player{
       col.splice(ci, 1);
     }
   }
-  play(){
+  play(board){
     const index = Math.floor(Math.random()*(this.moves.length-1));
     const n = this.moves[index];
     this.moves.splice(index, 1);
-    return this.board.receiveAttack((n - n%7)/7, n%7);
+    return board.receiveAttack((n - n%7)/7, n%7);
   }
 }
