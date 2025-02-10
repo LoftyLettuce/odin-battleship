@@ -1,22 +1,25 @@
 import { Human, Bot } from "./player";
 import { dom } from "./dom";
 export const game = function(){
-  const root = document.querySelector('body');
-  let player = new Human("steve");
-  let bot = new Bot("bot");
+  let player;
+  let bot;
   let tables;
-  function innit(){
-    dom.createTable(7);
-    dom.createTable(7);
-    tables = root.querySelectorAll('table');
+  function innit(plr1, plr2){
+    const root = document.querySelector('body');
+    const match = document.createElement('div');
+    match.classList.add('game');
+    player = plr1;
+    bot = plr2;
+    tables = [dom.createTable(7), dom.createTable(7)];
     let plrs = [bot, player];
     for (let i = 0; i < 2; i++){
+      match.appendChild(tables[i]);
       dom.renderTable(plrs[i], tables[i]);
       dom.connectTable(tables[i]);
     }
     tables[0].className = "active";
     tables[0].classList.add("hide");
-    dom.createInput(plrs[1], tables[1]);
+    root.appendChild(match);
   }
   function annouce(x){
     alert(x.name + 'win');

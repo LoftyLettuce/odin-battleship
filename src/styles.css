@@ -2,7 +2,24 @@
   padding: 0;
   margin: 0;
 }
-body{
+.home{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2%;
+  gap: 2%;
+  box-sizing: border-box;
+}
+.home table{
+  flex: 1 1 0;
+  aspect-ratio: 1/1;
+}
+.home>button{
+  flex: 0;
+}
+.game{
   padding: 1%;
   height: 100vh;
   box-sizing: border-box;
