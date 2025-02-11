@@ -4,14 +4,14 @@ export const dom = function(){
   function createInput(plr, table){
     const input = document.createElement('div');
     input.className = 'input';
-    const dropDown = document.createElement('select');
+    let dropDown = document.createElement('select');
     for (let i = 0; i < plr.board.battleships.length; i++){
       const option = document.createElement('option');
       option.textContent = `ship ${i}`;
       option.value = i;
       dropDown.appendChild(option);
     }
-    input.appendChild(dropDown)
+    input.appendChild(dropDown);
     for (let i = 0; i < 2; i++){
       const cordinate = document.createElement('input');
       cordinate.setAttribute('type', 'number');
@@ -20,11 +20,21 @@ export const dom = function(){
       cordinate.required = true;
       input.appendChild(cordinate);
     }
+    dropDown = document.createElement('select');
+    for (let i = 0; i <  2; i++){
+      const option = document.createElement('option');
+      dropDown.appendChild(option);
+    }
+    dropDown.children[0].textContent = 'Horizontal';
+    dropDown.children[0].value = false;
+    dropDown.children[1].textContent = 'Vertical';
+    dropDown.children[1].value = true;
+    input.appendChild(dropDown);
     const button = document.createElement('button');
     button.addEventListener('click', ()=>{
       const inputs = Array.from(input.children);
       if (inputs.every((e)=>e.checkValidity())){
-        plr.board.placeShip(plr.board.battleships[inputs[0].value], inputs[1].value, inputs[2].value);
+        plr.board.placeShip(plr.board.battleships[inputs[0].value], inputs[1].value, inputs[2].value, JSON.parse(inputs[3].value));
         renderTable(plr, table);
       }
     })
