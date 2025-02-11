@@ -1,9 +1,7 @@
 import { createCurtains } from "./index";
 import { dom } from "./dom";
 export const game = function(){
-  let player;
-  let bot;
-  let tables;
+  let player, bot, tables;
   function innit(plr1, plr2){
     const root = document.querySelector('body');
     const match = document.createElement('div');
@@ -13,7 +11,11 @@ export const game = function(){
     tables = [dom.createTable(7), dom.createTable(7)];
     let plrs = [bot, player];
     for (let i = 0; i < 2; i++){
-      match.appendChild(tables[i]);
+      const h1 = document.createElement('h1');
+      h1.textContent = plrs[1-i].name;
+      const div = document.createElement('div');
+      div.append(h1, tables[i]);
+      match.appendChild(div);
       dom.renderTable(plrs[i], tables[i]);
       dom.connectTable(tables[i]);
     }
@@ -22,7 +24,6 @@ export const game = function(){
     root.appendChild(match);
   }
   function annouce(x){
-    document.body.removeChild(document.body.querySelector('div'));
     document.body.appendChild(createCurtains(x.name));
   }
   function botPlay(){

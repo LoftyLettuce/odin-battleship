@@ -1,6 +1,23 @@
 *{
   padding: 0;
   margin: 0;
+  color: var(---font-color);
+  font-family: "Montserrat", serif;
+}
+:root{
+  ---ship-color: #7c2d12;
+  ---sea-color: #06b6d4;
+  ---background-color: #171717;
+  ---font-color: #f8fafc;
+  ---miss-color: #fb923c;
+  ---hit-color: #b91c1c;
+}
+svg{
+  fill: var(---font-color);
+  height: 2rem;
+}
+.home, .game, .congrat{
+  background-color: var(---background-color);
 }
 .home{
   height: 100vh;
@@ -17,7 +34,29 @@
   aspect-ratio: 1/1;
 }
 .home>button{
+  border: 1px solid var(---sea-color);
+  background-color: var(---background-color);
   flex: 0;
+}
+.input{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.input>*{
+  max-width: 20%;
+}
+.input input, .input select, .input button{
+  border: 1px solid var(---sea-color);
+  background-color: var(---background-color);
+}
+.input input{
+  padding-left: 1rem;
+}
+.input button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .game{
   padding: 1%;
@@ -38,28 +77,38 @@ tr{
   flex: 1 1 0;
   display: flex;
 }
-button{
+table button{
   flex: 1 1 0;
-  background-color: blue;
-  outline: 0.5px black;
+  background-color: var(---sea-color);
   box-sizing: border-box;
+  border: 1px solid var(---background-color);
 }
 .hide .ship{
-  background-color: blue;
+  background-color: var(---sea-color);
 }
 .ship{
-  background-color: brown;
+  background-color: var(---ship-color);
 }
 .checked{
-  background-color: red;
+  background-color: var(---miss-color);
 }
 .ship.checked{
-  background-color: black;
+  background-color: var(---hit-color);
 }
-.input{
-  grid-column: 2;
+.congrat{
+  position: absolute;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.input button{
-  width: 20px;
-  height: 20px;
+.congrat button{
+  border: none;
+  padding: 1%;
+  background-color: #171717;
+  opacity: 100%;
 }
