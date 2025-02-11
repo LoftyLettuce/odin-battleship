@@ -22,10 +22,11 @@ export class Bot extends Player{
     this.board.board.forEach((arr)=>arr.fill(false));
     //randomize board
     const col = Array(7).fill(0).map((e,i)=>i);
+    const isVertical = (Math.round(Math.random()*100)%2 == 0)?true:false;
     for (let i = 0; i < 5; i++){
       const ri = Math.floor(Math.random()*6);
       const ci = Math.floor(Math.random()*(col.length-1));
-      if (this.board.placeShip(this.board.battleships[i], ri, col[ci], true)==false){
+      if (this.board.placeShip(this.board.battleships[i], ri, col[ci], isVertical)==false){
         i--;
       };
       col.splice(ci, 1);
