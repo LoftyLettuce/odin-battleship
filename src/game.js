@@ -1,4 +1,4 @@
-import { Human, Bot } from "./player";
+import { createCurtains } from "./index";
 import { dom } from "./dom";
 export const game = function(){
   let player;
@@ -22,7 +22,8 @@ export const game = function(){
     root.appendChild(match);
   }
   function annouce(x){
-    alert(x.name + 'win');
+    document.body.removeChild(document.body.querySelector('div'));
+    document.body.appendChild(createCurtains(x.name));
   }
   function botPlay(){
     bot.play(player.board);
